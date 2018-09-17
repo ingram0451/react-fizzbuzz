@@ -9,37 +9,34 @@ class App extends Component {
     };
   }
   
+  /*
   componentDidCatch(error, info) {
     this.setState({ hasError: true });
     console.log(error);
     console.log(info);
   }
-
-
+  */
+ 
   getResult(event) {
     event.preventDefault();
     const options = {
       method: 'POST',
       mode: 'cors',
-      headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',                  
-      },
       body: JSON.stringify({'number': this.refs.input.value})
     };
 
     const request = new Request('http://localhost:8000/fizzbuzz/api', options);
     fetch(request)
-      .then(resp => resp.text())
-      .then(text => {
+      .then(response => response.json())
+      .then(response => {
         this.setState({
-          result: text
+          result: response.result
         })
       }).catch(function(error) {
-        if (typeof repe == 'undefined'){
-          console.log('Sever is not responding');
+        if (typeof response == 'undefined'){
+          console.log('Sever is not responding, maybe down');
         } else
-          console.log(error);
+          console.log(response, error);
     });
   }
 
