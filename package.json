@@ -6,7 +6,7 @@
     "start": "node server.js",
     "lint": "eslint src"
   },
-  "author": "Wang Han",
+  "author": "",
   "license": "",
   "repository": "",
   "devDependencies": {
